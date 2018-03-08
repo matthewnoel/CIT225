@@ -2,7 +2,7 @@
 #include <iostream>
 
 using namespace std;
-
+ 
 const int NUM_CIRCLES = 5;
 
 void selectionSort(Circle[], int);

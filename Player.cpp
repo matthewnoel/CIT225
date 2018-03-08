@@ -3,7 +3,7 @@
 #include<iostream>
 
 using namespace std;
-
+ 
 // Methods.
 int Player::getNumAtBats() const {
 	return atBats;

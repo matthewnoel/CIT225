@@ -1,7 +1,7 @@
 #include"Rectangle.h"
 
 using namespace std;
-
+ 
 // Gets rectangle length.
 double Rectangle::getLength() const {
 	return length;
