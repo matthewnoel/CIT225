@@ -18,6 +18,17 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ArrivalsBoard.cpp" />
+    <ClCompile Include="Flight.cpp" />
+    <ClCompile Include="TestFlights.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="flights.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Flight.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{76DD26A0-55BE-4D73-9A7F-F5521B6BCC04}</ProjectGuid>
