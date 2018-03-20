@@ -1,3 +1,8 @@
+// Author:  Matthew Noel
+// Course:  CIT225
+// File:    Flight.h
+// Purpose: .h file for Flight class
+
 #pragma once
 #ifndef FLIGHT_H
 #define FLIGHT_H

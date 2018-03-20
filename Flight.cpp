@@ -1,3 +1,8 @@
+// Author:  Matthew Noel
+// Course:  CIT225
+// File:    Flight.cpp
+// Purpose: .cpp file for Flight class
+
 #include"Flight.h"
 #include<string>
 
@@ -54,7 +59,8 @@ void Flight::finish() {
 }
 
 void Flight::delay(int minutes) {
-        arrival, departure += minutes;
+        arrival += minutes;
+        departure += minutes;
         status = 'D';
         return;
 }
@@ -62,5 +68,7 @@ void Flight::delay(int minutes) {
 Flight::Flight() {
         airlineName = "None";
         status = 'N';
-        flightNumber, arrival, departure = -1;
+        flightNumber = -1;
+        arrival = -1;
+        departure = -1;
 }
