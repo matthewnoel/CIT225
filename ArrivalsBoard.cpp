@@ -11,6 +11,8 @@ using namespace std;
 void printBoard(Flight[], long&, long);
 void printFormattedTime(long);
 char displayMenu();
+void selectionSort(Flight[], int);
+int binarySearch(int[], int, int, int&);
 
 int main() {
         
@@ -71,46 +73,41 @@ char displayMenu() {
         return c;
 }
 
-//Pseudo code
-SelectionSort(numbers, numbersSize) {
-i = 0
-j = 0
-indexSmallest = 0
-temp = 0  // Temporary variable for swap
+void selectionSort(Flight flights[], int flightsSize) {
+        int indexSmallest = 0;
+        Flight temp;
 
-for (i = 0; i < numbersSize - 1; ++i) {
-
-// Find index of smallest remaining element
-indexSmallest = i
-for (j = i + 1; j < numbersSize; ++j) {
-
-if (numbers[j] < numbers[indexSmallest]) {
-indexSmallest = j
-}
-}
-
-// Swap numbers[i] and numbers[indexSmallest]
-temp = numbers[i]
-numbers[i] = numbers[indexSmallest]
-numbers[indexSmallest] = temp
-}
+        for (int i = 0; i < flightsSize - 1; i++) {
+                indexSmallest = i;
+                for (int j = i + 1; j < flightsSize; j++) {
+                        if (flights[j].getArrivalTime() < flights[indexSmallest].getArrivalTime()) {
+                                indexSmallest = j;
+                        }
+                }
+                temp = flights[i];
+                flights[i] = flights[indexSmallest];
+                flights[indexSmallest] = temp;
+        }
 }
 
-// Pseudo Code
-void binarySearch(numbers, numbersSize, key) {
-        mid = 0
-        low = 0
-        high = numbersSize - 1
+int binarySearch(int arr[], int arrSize, int num, int& count) {
+        int mid = 0;
+        int low = 0;
+        int high = arrSize - 1;
 
         while (high >= low) {
-                mid = (high + low) / 2
-                if (numbers[mid] < key) {
-                        low = mid + 1
-                } else if (numbers[mid] > key) {
-                        high = mid - 1
-                } else {
-                        return mid
+                count++;
+                mid = (high + low) / 2;
+                if (arr[mid] < num) {
+                        low = mid + 1;
                 }
+                else if (arr[mid] > num) {
+                        high = mid - 1;
+                }
+                else {
+                        return mid;
+                }
+
         }
-        return -1
+        return -1;
 }
