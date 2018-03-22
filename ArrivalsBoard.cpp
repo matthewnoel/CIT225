@@ -24,9 +24,10 @@ int main() {
         char option;
         const int FLIGHTS_SIZE = 20;
         Flight flights[FLIGHTS_SIZE];
-        int numFlights = 0;
+        long numFlights = 0;
+        int minSinceMid = 60;
 
-        // Read in flights from file
+        // Opening flights text file and reading in information
         flightsIn.open("flights.txt");
 
         if (!flightsIn.is_open()) {
@@ -34,8 +35,7 @@ int main() {
                 return 0;
         }
 
-        while (!flightsIn.eof()) {
-                numFlights += 1;
+        while (!flightsIn.peek()) {
                 string tempName;
                 int tempNum;
                 int tempDepart;
@@ -48,9 +48,14 @@ int main() {
                 flightsIn >> tempArrival;
                 flightsIn >> tempStat;
 
-                flights[numFlights - 1].init(tempName, tempNum, tempDepart, tempArrival, tempStat);
+                flights[numFlights].init(tempName, tempNum, tempDepart, tempArrival, tempStat);
+                numFlights += 1;
         }
+        
+        // Print out starting board
+        printBoard(flights, numFlights, minSinceMid);
 
+        // Displays menu for user to select options
         do {
                 option = displayMenu();
                 switch (option) {
@@ -82,11 +87,11 @@ int main() {
 
         } while (option != 'q' && option != 'Q');
 
-        // After quit, save info to baseball.txt
+        // Saves flight info to text file
         flightsIn.close();
         flightsOut.open("flights.txt");
         for (int i = 0; i < numFlights; i++) {
-                flightsOut << flights[i].getFullName() << " " << players[i].getNumAtBats() << " " << players[i].getNumSingles() << " " << players[i].getNumDoubles() << " " << players[i].getNumTriples() << " " << players[i].getNumHomeRuns() << " " << players[i].getNumGamesPlayed() << " ";
+                flightsOut << flights[i].getAirline() << " " << flights[i].getNumber() << " " << flights[i].getDepartureTime() << " " << flights[i].getArrivalTime() << " " << flights[i].getStatus() << " ";
         }
 
         system("pause");
@@ -94,16 +99,21 @@ int main() {
         return 0;
 }
 
-void printBoard(Flight flights[], long& val, long val2) {
-        system("cls");
-        cout << "  Airline    Number   Arrives    Status   Departs ";
-        for (int i = 0; i < val2; i++) {
-
+void printBoard(Flight flights[], long& numFlights, long time) {
+        cout << "  Airline    Number   Arrives    Status   Departs " << endl;
+        for (int i = 0; i < numFlights; i++) {
+                cout << flights[i].getAirline() << " " << flights[i].getNumber() << " " << flights[i].getDepartureTime() << " " << flights[i].getArrivalTime() << " " << flights[i].getStatus() << endl;
         }
+        printFormattedTime(time);
         return;
 }
 
 void printFormattedTime(long value) {
+        int hours = value / 60;
+        int minutes = value % 60;
+
+        cout << hours << ":" << minutes << endl;
+
         return;
 }
 

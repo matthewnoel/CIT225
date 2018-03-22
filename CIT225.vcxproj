@@ -21,9 +21,6 @@
   <ItemGroup>
     <ClCompile Include="ArrivalsBoard.cpp" />
     <ClCompile Include="Flight.cpp" />
-    <ClCompile Include="Homework1.cpp" />
-    <ClCompile Include="IOLab.cpp" />
-    <ClCompile Include="MenuLab.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="flights.txt" />
