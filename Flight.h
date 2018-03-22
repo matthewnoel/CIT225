@@ -25,6 +25,7 @@ public:
         char getStatus() const;
 
         void init(string, int, int, int);
+        void init(string, int, int, int, char);
         void arrive();
         void depart();
         void cancel();

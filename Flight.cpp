@@ -37,6 +37,15 @@ void Flight::init(string airline, int number, int departureTime, int arrivalTime
         return;
 }
 
+void Flight::init(string airline, int number, int departureTime, int arrivalTime, char stat) {
+        airlineName = airline;
+        flightNumber = number;
+        departure = departureTime;
+        arrival = arrivalTime;
+        status = stat;
+        return;
+}
+
 void Flight::arrive() {
         status = 'A';
         return;
