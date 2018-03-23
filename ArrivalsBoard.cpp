@@ -15,7 +15,7 @@ void printBoard(Flight[], long&, long);
 void printFormattedTime(long);
 char displayMenu();
 void selectionSort(Flight[], int);
-Flight linearSearch(Flight[], int, int);
+Flight& linearSearch(Flight[], int, int);
 
 int main() {
         ifstream flightsIn;
@@ -57,8 +57,6 @@ int main() {
         // Displays menu for user to select options
         do {
                 system("cls");
-                cout << "Test: ";
-                printFormattedTime(5);
                 // Print out starting board
                 selectionSort(flights, numFlights);
                 printBoard(flights, numFlights, minSinceMid);
@@ -73,7 +71,7 @@ int main() {
                 case 'c':
                         // Cancel flight
                         int fltNum;
-                        cout << "Which flight number to cancel? " << endl;
+                        cout << "Which flight number to cancel? ";
                         cin >> fltNum;
                         linearSearch(flights, numFlights, fltNum).cancel();
                         break;
@@ -82,7 +80,7 @@ int main() {
                         // Delay flight
                         int flNum;
                         int min;
-                        cout << "Which flight number to advance? ";
+                        cout << "Which flight number to delay? ";
                         cin >> flNum;
                         cout << "Advance flight by how many minutes? ";
                         cin >> min;
@@ -134,14 +132,15 @@ int main() {
 void printBoard(Flight flights[], long& numFlights, long time) {
         cout << "   Airline    Number   Arrives    Status   Departs " << endl;
         for (int i = 0; i < numFlights; i++) {
-                cout << setw(10) << flights[i].getAirline() << setw(10) << flights[i].getNumber() << setw(10); 
+                cout << setw(10) << flights[i].getAirline() << setw(10) << flights[i].getNumber() << "     ";
                 printFormattedTime(flights[i].getArrivalTime());
-                cout << setw(10) << flights[i].getStatus() << setw(10);
+                cout << setw(10) << flights[i].getStatus() << "     ";
                 printFormattedTime(flights[i].getDepartureTime());
                 cout << endl;
         }
         cout << endl << "Time: ";
         printFormattedTime(time);
+        cout << endl << endl;
         return;
 }
 
@@ -149,7 +148,7 @@ void printFormattedTime(long value) {
         int hours = value / 60;
         int minutes = value % 60;
 
-        cout << setw(2) << setfill('0') << hours << ":" << setw(2) << setfill('0') << minutes << endl << endl << setfill(' ');
+        cout << setw(2) << setfill('0') << hours << ":" << setw(2) << setfill('0') << minutes << setfill(' ');
 
         return;
 }
@@ -182,12 +181,10 @@ void selectionSort(Flight flights[], int flightsSize) {
         }
 }
 
-Flight linearSearch(Flight flights[], int flightsSize, int flightNum) {
+Flight& linearSearch(Flight flights[], int flightsSize, int flightNum) {
         for (int i = 0; i < flightsSize; i++) {
                 if (flights[i].getNumber() == flightNum) {
                         return flights[i];
-                } else {
-                        cout << "Flight does not exist!" << endl;
                 }
         }
 }
