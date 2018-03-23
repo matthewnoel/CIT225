@@ -35,7 +35,7 @@ int main() {
                 return 0;
         }
 
-        while (!flightsIn.peek()) {
+        while (true) {
                 string tempName;
                 int tempNum;
                 int tempDepart;
@@ -48,11 +48,14 @@ int main() {
                 flightsIn >> tempArrival;
                 flightsIn >> tempStat;
 
+                if (flightsIn.eof()) break;
+
                 flights[numFlights].init(tempName, tempNum, tempDepart, tempArrival, tempStat);
                 numFlights += 1;
         }
         
         // Print out starting board
+        selectionSort(flights, numFlights);
         printBoard(flights, numFlights, minSinceMid);
 
         // Displays menu for user to select options
@@ -61,21 +64,47 @@ int main() {
                 switch (option) {
                 case 'A':
                 case 'a':
-
+                        // Advance flight
                         break;
                 case 'C':
                 case 'c':
-
+                        // Cancel flight
+                        int fltNum;
+                        cout << "Which flight number to cancel? " << endl;
+                        cin >> fltNum;
+                        linearSearch(flights, numFlights, fltNum).cancel();
                         break;
                 case 'D':
                 case 'd':
-
+                        // Delay flight
+                        int flNum;
+                        int min;
+                        cout << "Which flight number to advance? ";
+                        cin >> flNum;
+                        cout << "Advance flight by how many minutes? ";
+                        cin >> min;
+                        linearSearch(flights, numFlights, flNum).delay(min);
                         break;
 
                 case 'M':
-                case 'm':
+                case 'm': {
+                        // Make flight
+                        int n;
+                        int d;
+                        int a;
+                        string air;
 
-                        break;
+                        cout << "Airline: ";
+                        cin >> air;
+                        cout << "Flight Number: ";
+                        cin >> n;
+                        cout << "Departure time: ";
+                        cin >> d;
+                        cout << "Arrival time: ";
+                        cin >> a;
+                        flights[numFlights].init(air, n, d, a);
+                        numFlights += 1;
+                        break; }
 
                 case 'Q':
                 case 'q':
