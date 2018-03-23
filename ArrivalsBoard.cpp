@@ -53,13 +53,16 @@ int main() {
                 flights[numFlights].init(tempName, tempNum, tempDepart, tempArrival, tempStat);
                 numFlights += 1;
         }
-        
-        // Print out starting board
-        selectionSort(flights, numFlights);
-        printBoard(flights, numFlights, minSinceMid);
 
         // Displays menu for user to select options
         do {
+                system("cls");
+                cout << "Test: ";
+                printFormattedTime(5);
+                // Print out starting board
+                selectionSort(flights, numFlights);
+                printBoard(flights, numFlights, minSinceMid);
+
                 option = displayMenu();
                 switch (option) {
                 case 'A':
@@ -129,10 +132,15 @@ int main() {
 }
 
 void printBoard(Flight flights[], long& numFlights, long time) {
-        cout << "  Airline    Number   Arrives    Status   Departs " << endl;
+        cout << "   Airline    Number   Arrives    Status   Departs " << endl;
         for (int i = 0; i < numFlights; i++) {
-                cout << flights[i].getAirline() << " " << flights[i].getNumber() << " " << flights[i].getDepartureTime() << " " << flights[i].getArrivalTime() << " " << flights[i].getStatus() << endl;
+                cout << setw(10) << flights[i].getAirline() << setw(10) << flights[i].getNumber() << setw(10); 
+                printFormattedTime(flights[i].getArrivalTime());
+                cout << setw(10) << flights[i].getStatus() << setw(10);
+                printFormattedTime(flights[i].getDepartureTime());
+                cout << endl;
         }
+        cout << endl << "Time: ";
         printFormattedTime(time);
         return;
 }
@@ -141,7 +149,7 @@ void printFormattedTime(long value) {
         int hours = value / 60;
         int minutes = value % 60;
 
-        cout << hours << ":" << minutes << endl;
+        cout << setw(2) << setfill('0') << hours << ":" << setw(2) << setfill('0') << minutes << endl << endl << setfill(' ');
 
         return;
 }
@@ -178,6 +186,8 @@ Flight linearSearch(Flight flights[], int flightsSize, int flightNum) {
         for (int i = 0; i < flightsSize; i++) {
                 if (flights[i].getNumber() == flightNum) {
                         return flights[i];
+                } else {
+                        cout << "Flight does not exist!" << endl;
                 }
         }
 }
