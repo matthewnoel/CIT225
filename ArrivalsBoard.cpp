@@ -7,6 +7,7 @@
 #include<ios>
 #include<iomanip>
 #include<fstream>
+#include<string>
 #include"Flight.h"
 
 using namespace std;
@@ -22,7 +23,7 @@ int main() {
         ofstream flightsOut;
         
         char option;
-        const int FLIGHTS_SIZE = 20;
+        const int FLIGHTS_SIZE = 100;
         Flight flights[FLIGHTS_SIZE];
         long numFlights = 0;
         int minSinceMid = 60;
@@ -65,7 +66,22 @@ int main() {
                 switch (option) {
                 case 'A':
                 case 'a':
-                        // Advance flight
+                        // Advance time
+                        int adMin;
+                        cout << "How much time has passed? ";
+                        cin >> adMin;
+                        minSinceMid += adMin;
+
+                        for (int i = 0; i < numFlights; i++) {
+                                if (minSinceMid > flights[i].getDepartureTime()) {
+                                        flights[i].depart();
+                                }
+
+                                if (minSinceMid > flights[i].getArrivalTime()) {
+                                        flights[i].arrive();
+                                }
+                        }
+
                         break;
                 case 'C':
                 case 'c':
@@ -121,10 +137,10 @@ int main() {
         flightsIn.close();
         flightsOut.open("flights.txt");
         for (int i = 0; i < numFlights; i++) {
-                flightsOut << flights[i].getAirline() << " " << flights[i].getNumber() << " " << flights[i].getDepartureTime() << " " << flights[i].getArrivalTime() << " " << flights[i].getStatus() << " ";
+                if (flights[i].getStatus() != 'A' && flights[i].getStatus() != 'C') {
+                        flightsOut << flights[i].getAirline() << " " << flights[i].getNumber() << " " << flights[i].getDepartureTime() << " " << flights[i].getArrivalTime() << " " << flights[i].getStatus() << " ";
+                }
         }
-
-        system("pause");
         
         return 0;
 }
@@ -132,11 +148,13 @@ int main() {
 void printBoard(Flight flights[], long& numFlights, long time) {
         cout << "   Airline    Number   Arrives    Status   Departs " << endl;
         for (int i = 0; i < numFlights; i++) {
-                cout << setw(10) << flights[i].getAirline() << setw(10) << flights[i].getNumber() << "     ";
-                printFormattedTime(flights[i].getArrivalTime());
-                cout << setw(10) << flights[i].getStatus() << "     ";
-                printFormattedTime(flights[i].getDepartureTime());
-                cout << endl;
+                if (flights[i].getStatus() != 'A' && flights[i].getStatus() != 'C') {
+                        cout << setw(10) << flights[i].getAirline() << setw(10) << flights[i].getNumber() << "     ";
+                        printFormattedTime(flights[i].getArrivalTime());
+                        cout << setw(10) << flights[i].getStatus() << "     ";
+                        printFormattedTime(flights[i].getDepartureTime());
+                        cout << endl;
+                }
         }
         cout << endl << "Time: ";
         printFormattedTime(time);
