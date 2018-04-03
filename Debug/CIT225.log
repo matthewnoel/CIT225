@@ -1,3 +1,5 @@
-﻿  ArrivalsBoard.cpp
-d:\cit225 vs\cit225\cit225\arrivalsboard.cpp(210): warning C4715: 'linearSearch': not all control paths return a value
+﻿  timerlab.cpp
+d:\cit225 vs\cit225\cit225\timerlab.cpp(17): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+d:\cit225 vs\cit225\cit225\timerlab.cpp(11): warning C4101: 'firstButton': unreferenced local variable
+d:\cit225 vs\cit225\cit225\timerlab.cpp(12): warning C4101: 'secondButton': unreferenced local variable
   CIT225.vcxproj -> D:\CIT225 VS\CIT225\Debug\CIT225.exe
