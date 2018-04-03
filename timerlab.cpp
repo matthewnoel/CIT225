@@ -1,6 +1,7 @@
 #include<iostream>
 #include<ctime>
 #include<cstdlib>
+#include<cmath>
 
 using namespace std;
 
@@ -32,12 +33,14 @@ int main() {
 
                 difference = (secondPress - firstPress) / CLOCKS_PER_SEC;
 
-                cout << "You pressed them in " << difference << " seconds!" << endl;
+                cout << "You pressed them in " << difference << " seconds!" << endl << endl;
 
-                if (/*time = time*/) {
+                if (abs(randTime - difference) < 0.5) {
                         //win
+                        cout << "You won!" << endl << endl;
                 } else {
                         //lose
+                        cout << "You lost!" << endl << endl;
                 }
 
                 cout << "Play again? (y/n) ";
