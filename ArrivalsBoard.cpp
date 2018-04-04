@@ -16,7 +16,7 @@ void printBoard(Flight[], long&, long);
 void printFormattedTime(long);
 char displayMenu();
 void selectionSort(Flight[], int);
-Flight& linearSearch(Flight[], int, int);
+int linearSearch(Flight[], int, int);
 
 int main() {
         ifstream flightsIn;
@@ -29,7 +29,7 @@ int main() {
         int minSinceMid = 60;
 
         // Opening flights text file and reading in information
-        flightsIn.open("flights.txt");
+        flightsIn.open("flights.txt", ios::app);
 
         if (!flightsIn.is_open()) {
                 cout << "Error: File does not exist.\n";
@@ -87,20 +87,38 @@ int main() {
                 case 'c':
                         // Cancel flight
                         int fltNum;
+                        int indx;
                         cout << "Which flight number to cancel? ";
                         cin >> fltNum;
-                        linearSearch(flights, numFlights, fltNum).cancel();
+                        indx = linearSearch(flights, numFlights, fltNum);
+                        //if not -1
+                        if (indx != -1) {
+                                flights[indx].cancel();
+                        } else {
+                                cout << "Flight does not exist" << endl;
+                                system("pause");
+                        }
+
                         break;
                 case 'D':
                 case 'd':
                         // Delay flight
                         int flNum;
                         int min;
+                        int index;
                         cout << "Which flight number to delay? ";
                         cin >> flNum;
                         cout << "Advance flight by how many minutes? ";
                         cin >> min;
-                        linearSearch(flights, numFlights, flNum).delay(min);
+                        index = linearSearch(flights, numFlights, flNum);
+                        //if not -1
+                        if (index != -1) {
+                                flights[index].delay(min);
+                        } else {
+                                cout << "Flight does not exist" << endl;
+                                system("pause");
+                        }
+
                         break;
 
                 case 'M':
@@ -129,6 +147,7 @@ int main() {
                         break;
                 default:
                         cout << "Please select a valid option" << endl;
+                        system("pause");
                 }
 
         } while (option != 'q' && option != 'Q');
@@ -199,10 +218,11 @@ void selectionSort(Flight flights[], int flightsSize) {
         }
 }
 
-Flight& linearSearch(Flight flights[], int flightsSize, int flightNum) {
+int linearSearch(Flight flights[], int flightsSize, int flightNum) {
         for (int i = 0; i < flightsSize; i++) {
                 if (flights[i].getNumber() == flightNum) {
-                        return flights[i];
+                        return i;
                 }
         }
+        return -1;
 }

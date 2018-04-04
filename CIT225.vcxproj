@@ -19,7 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="timerlab.cpp" />
+    <ClCompile Include="ArrivalsBoard.cpp" />
+    <ClCompile Include="Flight.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Flight.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

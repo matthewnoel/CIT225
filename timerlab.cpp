@@ -23,7 +23,7 @@ int main() {
                 randTime = (rand() % 10) + 1;
 
                 cout << "Welcome to the guessing game" << endl;
-                cout << "Try to press the enter key with a difference of " << randTime << " seconds between presses" << endl;
+                cout << "Try to press enter with a difference of " << randTime << " seconds between presses" << endl;
                 cout << "Good luck!" << endl;
 
                 cin.get();
