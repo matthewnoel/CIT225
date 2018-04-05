@@ -15,10 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ArrivalsBoard.cpp">
+    <ClCompile Include="Flight.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Flight.cpp">
+    <ClCompile Include="ArrivalsBoard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

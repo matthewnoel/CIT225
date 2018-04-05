@@ -128,6 +128,7 @@ int main() {
                         int d;
                         int a;
                         string air;
+                        bool wasFound = false;
 
                         cout << "Airline: ";
                         cin >> air;
@@ -137,8 +138,20 @@ int main() {
                         cin >> d;
                         cout << "Arrival time: ";
                         cin >> a;
-                        flights[numFlights].init(air, n, d, a);
-                        numFlights += 1;
+
+                        for (int i = 0; i < numFlights; i++) {
+                                if (flights[i].getNumber() == n) {
+                                        wasFound = true;
+                                }
+                        }
+
+                        if (!wasFound) {
+                                flights[numFlights].init(air, n, d, a);
+                                numFlights += 1;
+                        } else {
+                                cout << "That flight number already exists!" << endl;
+                                system("pause");
+;                        }
                         break; }
 
                 case 'Q':
