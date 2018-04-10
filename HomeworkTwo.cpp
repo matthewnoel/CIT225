@@ -1,4 +1,5 @@
 #include<cstdlib>
+#include<iostream>
 
 using namespace std;
 
@@ -6,13 +7,30 @@ void insertionSort(long[], long);
 void selectionSort(long[], long);
 void quickSort(long[], long, long);
 long partition(long[], long, long);
-void shellSort();
+void shellSort(long[], long, long[]);
+void insertionSortInterleaved(long[], long, long, long);
 
 int main() {
+        long numbers[] = { 10, 2, 78, 4, 45, 32, 7, 11 };
+        const long NUMBERS_SIZE = 8;
+
+        cout << "Unsorted: ";
+        for (int i = 0; i < NUMBERS_SIZE; i++) {
+                cout << numbers[i] << " ";
+        }
+
+        quickSort(numbers, 0, NUMBERS_SIZE - 1);
+
+        cout << endl << "Sorted: ";
+        for (int i = 0; i < NUMBERS_SIZE; i++) {
+                cout << numbers[i] << " ";
+        }
+        cout << endl;
 
         return 0;
 }
 
+// [Y] Works
 // Smallest to largest
 void insertionSort(long numbers[], long numbersSize) {
         int i = 0;
@@ -30,6 +48,7 @@ void insertionSort(long numbers[], long numbersSize) {
         }
 }
 
+// [Y] Works
 // Smallest to largest
 void selectionSort(long numbers[], long numbersSize) {
         int i = 0;
@@ -51,7 +70,10 @@ void selectionSort(long numbers[], long numbersSize) {
         }
 }
 
+// [Y] Works
 // Smallest to largest
+// i is first element
+// k is last element
 void quickSort(long numbers[], long i, long k) {
         int j = 0;
 
@@ -101,4 +123,18 @@ long partition(long numbers[], long i, long k) {
         }
 
         return h;
+}
+
+// [Y] Works
+// Smallest to largest
+void shellSort(long numbers[], long numbersSize, long gapValues[]) {
+        for (long gapValue: gapValues) {
+                for (int i = 0; i < gapValue; i++) {
+                        insertionSortInterleaved(numbers, numbersSize, i, gapValue)
+                }
+        }
+}
+
+void insertionSortInterleaved(long numbers[], long numbersSize, long startIndex, long gap) {
+
 }
