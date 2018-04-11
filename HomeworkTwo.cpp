@@ -8,17 +8,17 @@
 
 using namespace std;
 
-void insertionSort(long[], long);
-void selectionSort(long[], long);
-void quickSort(long[], long, long);
-long partition(long[], long, long);
-void shellSort(long[], long, long[], long);
-void insertionSortInterleaved(long[], long, long, long);
-
 struct Counter {
         long long swaps;
         long long comparisons;
 };
+
+void insertionSort(long[], long, Counter&);
+void selectionSort(long[], long, Counter&);
+void quickSort(long[], long, long, Counter&);
+long partition(long[], long, long, Counter&);
+void shellSort(long[], long, long[], long, Counter&);
+void insertionSortInterleaved(long[], long, long, long, Counter&);
 
 int main() {
         Counter insertionCounter;
@@ -35,6 +35,8 @@ int main() {
         long tenThousand[10000];
         long hundredThousand[100000];
 
+        long gapValues[20];
+
         // Fill master arrays randomly
         for (int i = 0; i < 5000; i++) {
                 fiveThousandMaster[i] = rand();
@@ -48,12 +50,119 @@ int main() {
                 hundredThousandMaster[i] = rand();
         }
 
+        for (int i = 0; i < 3; i++) {
+
+                // Fill duplicate arrays
+                for (int i = 0; i < 5000; i++) {
+                        fiveThousand[i] = fiveThousandMaster[i];
+                }
+
+                for (int i = 0; i < 10000; i++) {
+                        tenThousand[i] = tenThousandMaster[i];
+                }
+
+                for (int i = 0; i < 100000; i++) {
+                        hundredThousand[i] = hundredThousandMaster[i];
+                }
+
+                // Insertion sort all three
+                insertionSort(fiveThousand, 5000, insertionCounter);
+                insertionSort(tenThousand, 10000, insertionCounter);
+                insertionSort(hundredThousand, 100000, insertionCounter);
+
+                // Output counts
+        }
+
+        for (int i = 0; i < 3; i++) {
+
+                // Fill duplicate arrays
+                for (int i = 0; i < 5000; i++) {
+                        fiveThousand[i] = fiveThousandMaster[i];
+                }
+
+                for (int i = 0; i < 10000; i++) {
+                        tenThousand[i] = tenThousandMaster[i];
+                }
+
+                for (int i = 0; i < 100000; i++) {
+                        hundredThousand[i] = hundredThousandMaster[i];
+                }
+
+                // Selection sort all three
+
+                // Output counts
+        }
+
+        for (int i = 0; i < 3; i++) {
+
+                // Fill duplicate arrays
+                for (int i = 0; i < 5000; i++) {
+                        fiveThousand[i] = fiveThousandMaster[i];
+                }
+
+                for (int i = 0; i < 10000; i++) {
+                        tenThousand[i] = tenThousandMaster[i];
+                }
+
+                for (int i = 0; i < 100000; i++) {
+                        hundredThousand[i] = hundredThousandMaster[i];
+                }
+
+                // Quicksort all three
+
+                // Output counts
+        }
+
+        // Fill gapValues[]
+
+        for (int i = 0; i < 3; i++) {
+
+                // Fill duplicate arrays
+                for (int i = 0; i < 5000; i++) {
+                        fiveThousand[i] = fiveThousandMaster[i];
+                }
+
+                for (int i = 0; i < 10000; i++) {
+                        tenThousand[i] = tenThousandMaster[i];
+                }
+
+                for (int i = 0; i < 100000; i++) {
+                        hundredThousand[i] = hundredThousandMaster[i];
+                }
+
+                // Shell sort all three
+
+                // Output counts
+        }
+
+        // Fill gapValues[]
+
+        for (int i = 0; i < 3; i++) {
+
+                // Fill duplicate arrays
+                for (int i = 0; i < 5000; i++) {
+                        fiveThousand[i] = fiveThousandMaster[i];
+                }
+
+                for (int i = 0; i < 10000; i++) {
+                        tenThousand[i] = tenThousandMaster[i];
+                }
+
+                for (int i = 0; i < 100000; i++) {
+                        hundredThousand[i] = hundredThousandMaster[i];
+                }
+
+                // Shell sort all three
+
+                // Output counts
+        }
+
         return 0;
 }
 
 // [Y] Works
 // Smallest to largest
-void insertionSort(long numbers[], long numbersSize) {
+void insertionSort(long numbers[], long numbersSize, Counter& insertionCounts) {
         int i = 0;
         int j = 0;
         int temp = 0;
@@ -71,7 +180,7 @@ void insertionSort(long numbers[], long numbersSize) {
 
 // [Y] Works
 // Smallest to largest
-void selectionSort(long numbers[], long numbersSize) {
+void selectionSort(long numbers[], long numbersSize, Counter& selectionCounts) {
         int i = 0;
         int j = 0;
         int indexSmallest = 0;
@@ -95,20 +204,20 @@ void selectionSort(long numbers[], long numbersSize) {
 // Smallest to largest
 // i is first element
 // k is last element
-void quickSort(long numbers[], long i, long k) {
+void quickSort(long numbers[], long i, long k, Counter& quickCounts) {
         int j = 0;
 
         if (i >= k) {
                 return;
         }
 
-        j = partition(numbers, i, k);
+        j = partition(numbers, i, k, quickCounts);
 
-        quickSort(numbers, i, j);
-        quickSort(numbers, j + 1, k);
+        quickSort(numbers, i, j, quickCounts);
+        quickSort(numbers, j + 1, k, quickCounts);
 }
 
-long partition(long numbers[], long i, long k) {
+long partition(long numbers[], long i, long k, Counter& quickCounts) {
         int l = 0;
         int h = 0;
         int midpoint = 0;
@@ -148,15 +257,15 @@ long partition(long numbers[], long i, long k) {
 
 // [Y] Works
 // Smallest to largest
-void shellSort(long numbers[], long numbersSize, long gapValues[], long numGaps) {
+void shellSort(long numbers[], long numbersSize, long gapValues[], long numGaps, Counter& shellCounts) {
         for (int j = 0; j < numGaps; j++) {
                 for (int i = 0; i < gapValues[j]; i++) {
-                        insertionSortInterleaved(numbers, numbersSize, i, gapValues[j]);
+                        insertionSortInterleaved(numbers, numbersSize, i, gapValues[j], shellCounts);
                 }
         }
 }
 
-void insertionSortInterleaved(long numbers[], long numbersSize, long startIndex, long gap) {
+void insertionSortInterleaved(long numbers[], long numbersSize, long startIndex, long gap, Counter& shellCounts) {
 
         int temp = 0;
 
