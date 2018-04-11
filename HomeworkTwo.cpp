@@ -15,22 +15,38 @@ long partition(long[], long, long);
 void shellSort(long[], long, long[], long);
 void insertionSortInterleaved(long[], long, long, long);
 
+struct Counter {
+        long long swaps;
+        long long comparisons;
+};
+
 int main() {
-        long numbers[] = { 23, 65, 35, 89, 98, 84, 94, 68, 54, 67, 83, 46, 91, 72, 39};
-        const long NUMBERS_SIZE = 15;
+        Counter insertionCounter;
+        Counter selectionCounter;
+        Counter quickCounter;
+        Counter shellCounter;
+        Counter shellOneCounter;
 
-        cout << "Unsorted: ";
-        for (int i = 0; i < NUMBERS_SIZE; i++) {
-                cout << numbers[i] << " ";
-        }
-        long gapValues[] = { 5,3,1 };
-        shellSort(numbers, NUMBERS_SIZE, gapValues, 3);
+        long fiveThousandMaster[5000];
+        long tenThousandMaster[10000];
+        long hundredThousandMaster[100000];
 
-        cout << endl << "Sorted: ";
-        for (int i = 0; i < NUMBERS_SIZE; i++) {
-                cout << numbers[i] << " ";
+        long fiveThousand[5000];
+        long tenThousand[10000];
+        long hundredThousand[100000];
+
+        // Fill master arrays randomly
+        for (int i = 0; i < 5000; i++) {
+                fiveThousandMaster[i] = rand();
         }
-        cout << endl;
+
+        for (int i = 0; i < 10000; i++) {
+                tenThousandMaster[i] = rand();
+        }
+
+        for (int i = 0; i < 100000; i++) {
+                hundredThousandMaster[i] = rand();
+        }
 
         return 0;
 }
