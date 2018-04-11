@@ -1,3 +1,8 @@
+/*
+ * Homework 2 - CIT225
+ * Matthew Noel
+ */
+
 #include<cstdlib>
 #include<iostream>
 
@@ -7,19 +12,19 @@ void insertionSort(long[], long);
 void selectionSort(long[], long);
 void quickSort(long[], long, long);
 long partition(long[], long, long);
-void shellSort(long[], long, long[]);
+void shellSort(long[], long, long[], long);
 void insertionSortInterleaved(long[], long, long, long);
 
 int main() {
-        long numbers[] = { 10, 2, 78, 4, 45, 32, 7, 11 };
-        const long NUMBERS_SIZE = 8;
+        long numbers[] = { 23, 65, 35, 89, 98, 84, 94, 68, 54, 67, 83, 46, 91, 72, 39};
+        const long NUMBERS_SIZE = 15;
 
         cout << "Unsorted: ";
         for (int i = 0; i < NUMBERS_SIZE; i++) {
                 cout << numbers[i] << " ";
         }
-
-        quickSort(numbers, 0, NUMBERS_SIZE - 1);
+        long gapValues[] = { 5,3,1 };
+        shellSort(numbers, NUMBERS_SIZE, gapValues, 3);
 
         cout << endl << "Sorted: ";
         for (int i = 0; i < NUMBERS_SIZE; i++) {
@@ -127,14 +132,25 @@ long partition(long numbers[], long i, long k) {
 
 // [Y] Works
 // Smallest to largest
-void shellSort(long numbers[], long numbersSize, long gapValues[]) {
-        for (long gapValue: gapValues) {
-                for (int i = 0; i < gapValue; i++) {
-                        insertionSortInterleaved(numbers, numbersSize, i, gapValue)
+void shellSort(long numbers[], long numbersSize, long gapValues[], long numGaps) {
+        for (int j = 0; j < numGaps; j++) {
+                for (int i = 0; i < gapValues[j]; i++) {
+                        insertionSortInterleaved(numbers, numbersSize, i, gapValues[j]);
                 }
         }
 }
 
 void insertionSortInterleaved(long numbers[], long numbersSize, long startIndex, long gap) {
 
+        int temp = 0;
+
+        for (int i = startIndex + gap; i < numbersSize; i = i + gap) {
+                int j = i;
+                while (j - gap >= startIndex && numbers[j] < numbers[j - gap]) {
+                        temp = numbers[j];
+                        numbers[j] = numbers[j - gap];
+                        numbers[j - gap] = temp;
+                        j = j - gap;
+                }
+        }
 }
