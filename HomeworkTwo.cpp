@@ -9,8 +9,8 @@
 using namespace std;
 
 struct Counter {
-        long long swaps;
-        long long comparisons;
+        long long swaps = 0;
+        long long comparisons = 0;
 };
 
 void insertionSort(long[], long, Counter&);
@@ -66,11 +66,18 @@ int main() {
                 }
 
                 // Insertion sort all three
+                insertionCounter.swaps = 0;
+                insertionCounter.comparisons = 0;
                 insertionSort(fiveThousand, 5000, insertionCounter);
+                cout << "5000   - Insertion Sort - Swaps: " << insertionCounter.swaps << " Comparisons: " << insertionCounter.comparisons << endl;
+                insertionCounter.swaps = 0;
+                insertionCounter.comparisons = 0;
                 insertionSort(tenThousand, 10000, insertionCounter);
+                cout << "10000  - Insertion Sort - Swaps: " << insertionCounter.swaps << " Comparisons: " << insertionCounter.comparisons << endl;
+                insertionCounter.swaps = 0;
+                insertionCounter.comparisons = 0;
                 insertionSort(hundredThousand, 100000, insertionCounter);
-
-                // Output counts
+                cout << "100000 - Insertion Sort - Swaps: " << insertionCounter.swaps << " Comparisons: " << insertionCounter.comparisons << endl;
         }
 
         for (int i = 0; i < 3; i++) {
@@ -170,9 +177,14 @@ void insertionSort(long numbers[], long numbersSize, Counter& insertionCounts) {
         for (int i = 1; i < numbersSize; i++) {
                 j = i;
                 while (j > 0 && numbers[j] < numbers[j - 1]) {
+                        insertionCounts.comparisons += 1;
+
                         temp = numbers[j];
                         numbers[j] = numbers[j - 1];
                         numbers[j - 1] = temp;
+
+                        insertionCounts.swaps += 3;
+
                         j--;
                 }
         }
