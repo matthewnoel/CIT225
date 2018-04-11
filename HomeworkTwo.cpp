@@ -13,6 +13,7 @@ struct Counter {
         long long comparisons = 0;
 };
 
+void revertArrays(long[], long[], long[], long[], long[], long[]);
 void insertionSort(long[], long, Counter&);
 void selectionSort(long[], long, Counter&);
 void quickSort(long[], long, long, Counter&);
@@ -37,33 +38,22 @@ int main() {
 
         long gapValues[20];
 
-        // Fill master arrays randomly
-        for (int i = 0; i < 5000; i++) {
-                fiveThousandMaster[i] = rand();
-        }
-
-        for (int i = 0; i < 10000; i++) {
-                tenThousandMaster[i] = rand();
-        }
-
-        for (int i = 0; i < 100000; i++) {
-                hundredThousandMaster[i] = rand();
-        }
-
         for (int i = 0; i < 3; i++) {
-
-                // Fill duplicate arrays
+                // Fill master arrays randomly
                 for (int i = 0; i < 5000; i++) {
-                        fiveThousand[i] = fiveThousandMaster[i];
+                        fiveThousandMaster[i] = rand();
                 }
 
                 for (int i = 0; i < 10000; i++) {
-                        tenThousand[i] = tenThousandMaster[i];
+                        tenThousandMaster[i] = rand();
                 }
 
                 for (int i = 0; i < 100000; i++) {
-                        hundredThousand[i] = hundredThousandMaster[i];
+                        hundredThousandMaster[i] = rand();
                 }
+
+                // Fill duplicate arrays
+                revertArrays(fiveThousand, fiveThousandMaster, tenThousand, tenThousandMaster, hundredThousand, hundredThousandMaster);
 
                 // Insertion sort all three
                 insertionCounter.swaps = 0;
@@ -77,94 +67,39 @@ int main() {
                 insertionCounter.swaps = 0;
                 insertionCounter.comparisons = 0;
                 insertionSort(hundredThousand, 100000, insertionCounter);
-                cout << "100000 - Insertion Sort - Swaps: " << insertionCounter.swaps << " Comparisons: " << insertionCounter.comparisons << endl;
-        }
-
-        for (int i = 0; i < 3; i++) {
-
-                // Fill duplicate arrays
-                for (int i = 0; i < 5000; i++) {
-                        fiveThousand[i] = fiveThousandMaster[i];
-                }
-
-                for (int i = 0; i < 10000; i++) {
-                        tenThousand[i] = tenThousandMaster[i];
-                }
-
-                for (int i = 0; i < 100000; i++) {
-                        hundredThousand[i] = hundredThousandMaster[i];
-                }
-
+                cout << "100000 - Insertion Sort - Swaps: " << insertionCounter.swaps << " Comparisons: " << insertionCounter.comparisons << endl << endl;
+        
                 // Selection sort all three
-
-                // Output counts
-        }
-
-        for (int i = 0; i < 3; i++) {
-
-                // Fill duplicate arrays
-                for (int i = 0; i < 5000; i++) {
-                        fiveThousand[i] = fiveThousandMaster[i];
-                }
-
-                for (int i = 0; i < 10000; i++) {
-                        tenThousand[i] = tenThousandMaster[i];
-                }
-
-                for (int i = 0; i < 100000; i++) {
-                        hundredThousand[i] = hundredThousandMaster[i];
-                }
-
-                // Quicksort all three
-
-                // Output counts
-        }
-
-        // Fill gapValues[]
-
-        for (int i = 0; i < 3; i++) {
-
-                // Fill duplicate arrays
-                for (int i = 0; i < 5000; i++) {
-                        fiveThousand[i] = fiveThousandMaster[i];
-                }
-
-                for (int i = 0; i < 10000; i++) {
-                        tenThousand[i] = tenThousandMaster[i];
-                }
-
-                for (int i = 0; i < 100000; i++) {
-                        hundredThousand[i] = hundredThousandMaster[i];
-                }
-
-                // Shell sort all three
-
-                // Output counts
-        }
-
-        // Fill gapValues[]
-
-        for (int i = 0; i < 3; i++) {
-
-                // Fill duplicate arrays
-                for (int i = 0; i < 5000; i++) {
-                        fiveThousand[i] = fiveThousandMaster[i];
-                }
-
-                for (int i = 0; i < 10000; i++) {
-                        tenThousand[i] = tenThousandMaster[i];
-                }
-
-                for (int i = 0; i < 100000; i++) {
-                        hundredThousand[i] = hundredThousandMaster[i];
-                }
-
-                // Shell sort all three
-
-                // Output counts
+                selectionCounter.swaps = 0;
+                selectionCounter.comparisons = 0;
+                selectionSort(fiveThousand, 5000, selectionCounter);
+                cout << "5000   - Selection Sort - Swaps: " << selectionCounter.swaps << " Comparisons: " << selectionCounter.comparisons << endl;
+                selectionCounter.swaps = 0;
+                selectionCounter.comparisons = 0;
+                selectionSort(tenThousand, 10000, selectionCounter);
+                cout << "10000  - Selection Sort - Swaps: " << selectionCounter.swaps << " Comparisons: " << selectionCounter.comparisons << endl;
+                selectionCounter.swaps = 0;
+                selectionCounter.comparisons = 0;
+                selectionSort(hundredThousand, 100000, selectionCounter);
+                cout << "100000 - Selection Sort - Swaps: " << selectionCounter.swaps << " Comparisons: " << selectionCounter.comparisons << endl << endl;
         }
 
         return 0;
+}
+
+void revertArrays(long fiveThousand[], long fiveThousandMaster[], long tenThousand[], long tenThousandMaster[], long hundredThousand[], long hundredThousandMaster[]) {
+        for (int i = 0; i < 5000; i++) {
+                fiveThousand[i] = fiveThousandMaster[i];
+        }
+
+        for (int i = 0; i < 10000; i++) {
+                tenThousand[i] = tenThousandMaster[i];
+        }
+
+        for (int i = 0; i < 100000; i++) {
+                hundredThousand[i] = hundredThousandMaster[i];
+        }
+        return;
 }
 
 // [Y] Works
@@ -176,8 +111,8 @@ void insertionSort(long numbers[], long numbersSize, Counter& insertionCounts) {
 
         for (int i = 1; i < numbersSize; i++) {
                 j = i;
+                insertionCounts.comparisons += 1;
                 while (j > 0 && numbers[j] < numbers[j - 1]) {
-                        insertionCounts.comparisons += 1;
 
                         temp = numbers[j];
                         numbers[j] = numbers[j - 1];
@@ -201,6 +136,7 @@ void selectionSort(long numbers[], long numbersSize, Counter& selectionCounts) {
         for (int i = 0; i < numbersSize - 1; i++) {
                 indexSmallest = i;
                 for (int j = i + 1; j < numbersSize; j++) {
+                        selectionCounts.comparisons += 1;
                         if (numbers[j] < numbers[indexSmallest]) {
                                 indexSmallest = j;
                         }
@@ -209,6 +145,7 @@ void selectionSort(long numbers[], long numbersSize, Counter& selectionCounts) {
                 temp = numbers[i];
                 numbers[i] = numbers[indexSmallest];
                 numbers[indexSmallest] = temp;
+                selectionCounts.swaps += 3;
         }
 }
 
