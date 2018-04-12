@@ -1,3 +1,3 @@
 ﻿  HomeworkTwo.cpp
-d:\cit225 vs\cit225\cit225\homeworktwo.cpp(39): warning C4101: 'gapValues': unreferenced local variable
+d:\cit225 vs\cit225\cit225\homeworktwo.cpp(355): warning C4244: '=': conversion from 'double' to 'long', possible loss of data
   CIT225.vcxproj -> D:\CIT225 VS\CIT225\Debug\CIT225.exe
