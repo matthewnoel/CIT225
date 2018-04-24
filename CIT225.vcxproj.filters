@@ -15,7 +15,15 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="HomeworkTwo.cpp">
+    <ClInclude Include="StackLinkedList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QueueLinkedList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="QueueLinkedListLab.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

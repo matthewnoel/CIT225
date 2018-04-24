@@ -15,6 +15,7 @@ private:
         //functions from book.  Used, but never called from the main
         void listRemoveAfter(QueueNode*&, QueueNode*&, QueueNode*);
         void listPrepend(QueueNode*&, QueueNode*&, QueueNode*);
+        void listAppend(QueueNode*&, QueueNode*&, QueueNode*);
 
 public:
         Queue();  //constructor
@@ -54,7 +55,7 @@ void Queue<T>::push(T val)
         newNode = new QueueNode;
         newNode->dataVal = val;
         newNode->nextNodePtr = nullptr;
-        listPrepend(head, tail, newNode);
+        listAppend(head, tail, newNode);
 }
 
 //destructor
@@ -77,7 +78,7 @@ Queue<T>::~Queue()
 template <class T>
 void Queue<T>::listRemoveAfter(QueueNode* & head, QueueNode*& tail, QueueNode* curNode) {
         QueueNode* sucNode, *toDelete;
-
+        toDelete = nullptr;
         // Special case, remove head
         if (curNode == nullptr && head != nullptr) {
                 sucNode = head->nextNodePtr;
@@ -114,6 +115,18 @@ void Queue<T>::listPrepend(QueueNode*& h, QueueNode*& t, QueueNode* n)
         {
                 n->nextNodePtr = h;
                 h = n;
+        }
+}
+
+template <class T>
+void Queue<T>::listAppend(QueueNode*& head, QueueNode *&tail, QueueNode *newNode) {
+        if (head == nullptr) { // List empty
+                head = newNode;
+                tail = newNode;
+        }
+        else {
+                tail->nextNodePtr = newNode;
+                tail = newNode;
         }
 }
 #endif
