@@ -18,13 +18,6 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="QueueLinkedList.h" />
-    <ClInclude Include="StackLinkedList.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="QueueLinkedListLab.cpp" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{76DD26A0-55BE-4D73-9A7F-F5521B6BCC04}</ProjectGuid>
