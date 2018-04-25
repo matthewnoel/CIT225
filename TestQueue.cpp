@@ -6,8 +6,8 @@ using namespace std;
 
 int main()
 {
-	Queue<long> ql;
-	Queue<string> qs;
+        Queue<long> ql;
+        Queue<string> qs;
 
 	if (!ql.isEmpty())
 		cout << "Error in isEmpty() 1!\n";

@@ -23,6 +23,7 @@ public:
         void push(T);
         T pop();
         bool isEmpty() const;
+        T peek() const;
 
 };
 
@@ -56,6 +57,12 @@ void Queue<T>::push(T val)
         newNode->dataVal = val;
         newNode->nextNodePtr = nullptr;
         listAppend(head, tail, newNode);
+}
+
+template <class T>
+T Queue<T>::peek() const
+{
+        return head->dataVal;
 }
 
 //destructor
