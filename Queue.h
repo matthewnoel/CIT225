@@ -1,139 +1,94 @@
-#ifndef QUEUELLZY_H
-#define QUEUELLZY_H
+// Working Queue Class Implemented as an array
+// Written by Dr. Thompson
+// April 26, 2018
+
+#ifndef QUEUE_H
+#define QUEUE_H
 
 template <class T>
 class Queue
 {
 private:
-        struct QueueNode
-        {
-                QueueNode* nextNodePtr;
-                T dataVal;
-        };
-        QueueNode *head, *tail;
-
-        //functions from book.  Used, but never called from the main
-        void listRemoveAfter(QueueNode*&, QueueNode*&, QueueNode*);
-        void listPrepend(QueueNode*&, QueueNode*&, QueueNode*);
-        void listAppend(QueueNode*&, QueueNode*&, QueueNode*);
+	static const long MAX_SIZE = 100;
+	long rear, front, numItems;
+	T ary[MAX_SIZE];
 
 public:
-        Queue();  //constructor
-        ~Queue();  //destructor
-        void push(T);
-        T pop();
-        bool isEmpty() const;
-        T peek() const;
+	Queue();
+	void push(T);
+	T pop();
+	T peek();
+	bool isEmpty();
+	bool isFull();
 
 };
 
-template <class T>
-bool Queue<T>::isEmpty() const
-{
-        //queue is empty if head is null (list is empty)
-        return head == nullptr;
-}
 
-//constructor to initialize empty list
 template <class T>
 Queue<T>::Queue()
 {
-        head = tail = nullptr;
+	numItems = 0;
+	rear = -1;
+	front = 0;
+}
+
+
+template <class T>
+bool Queue<T>::isEmpty()
+{
+	return numItems == 0;
 }
 
 template <class T>
-T Queue<T>::pop()
+bool Queue<T>::isFull()
 {
-        T poppedVal = head->dataVal;    // Copy value of list head (top of stack)
-        listRemoveAfter(head, tail, nullptr);  // Remove list head  
-        return poppedVal;
+	return numItems == MAX_SIZE;
 }
 
 template <class T>
 void Queue<T>::push(T val)
 {
-        QueueNode* newNode;
-        newNode = new QueueNode;
-        newNode->dataVal = val;
-        newNode->nextNodePtr = nullptr;
-        listAppend(head, tail, newNode);
+	if (!isFull())
+	{
+		numItems++;
+		if (rear < MAX_SIZE - 1)
+		{
+			rear++;
+		}
+		else
+		{
+			rear = 0;
+		}
+		ary[rear] = val;
+	}
 }
 
 template <class T>
-T Queue<T>::peek() const
+T Queue<T>::peek()
 {
-        return head->dataVal;
+	return ary[front];
 }
 
-//destructor
+
 template <class T>
-Queue<T>::~Queue()
+T Queue<T>::pop()
 {
-        QueueNode* temp, *toDelete;
-        temp = head;
-        while (temp != nullptr)
-        {
-                toDelete = temp;
-                temp = temp->nextNodePtr;
-                delete toDelete;
-        }
+	T temp;
+	if (!isEmpty())
+	{
+		temp = ary[front];
+		if (front < MAX_SIZE - 1)
+		{
+			front++;
+		}
+		else
+		{
+			front = 0;
+		}
 
-        head = tail = nullptr;
-}
+		numItems--;
 
-//adapted from book
-template <class T>
-void Queue<T>::listRemoveAfter(QueueNode* & head, QueueNode*& tail, QueueNode* curNode) {
-        QueueNode* sucNode, *toDelete;
-        toDelete = nullptr;
-        // Special case, remove head
-        if (curNode == nullptr && head != nullptr) {
-                sucNode = head->nextNodePtr;
-                toDelete = head;
-                head = sucNode;
-
-                if (sucNode == nullptr) { // Removed last item
-                        tail = nullptr;
-                }
-        }
-        else if (curNode->nextNodePtr != nullptr) {
-                toDelete = curNode->nextNodePtr;
-                sucNode = curNode->nextNodePtr->nextNodePtr;
-                curNode->nextNodePtr = sucNode;
-
-                if (sucNode == nullptr) { // Removed tail
-                        tail = curNode;
-                }
-        }
-
-        delete toDelete;
-}
-
-//adapted from book
-template <class T>
-void Queue<T>::listPrepend(QueueNode*& h, QueueNode*& t, QueueNode* n)
-{
-        if (h == nullptr)
-        {
-                h = n;
-                t = n;
-        }
-        else
-        {
-                n->nextNodePtr = h;
-                h = n;
-        }
-}
-
-template <class T>
-void Queue<T>::listAppend(QueueNode*& head, QueueNode *&tail, QueueNode *newNode) {
-        if (head == nullptr) { // List empty
-                head = newNode;
-                tail = newNode;
-        }
-        else {
-                tail->nextNodePtr = newNode;
-                tail = newNode;
-        }
+		return temp;
+	}
 }
 #endif

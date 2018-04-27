@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Party.cpp" />
     <ClCompile Include="TestMovie.cpp" />
     <ClCompile Include="TestParty.cpp" />
-    <ClCompile Include="TestQueue.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Movie.h" />
