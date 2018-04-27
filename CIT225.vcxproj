@@ -28,6 +28,9 @@
     <ClInclude Include="Party.h" />
     <ClInclude Include="Queue.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="movies.txt" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{76DD26A0-55BE-4D73-9A7F-F5521B6BCC04}</ProjectGuid>

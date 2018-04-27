@@ -1,3 +1,8 @@
+// Author:  Matthew Noel
+// Course:  CIT225
+// File:    Program2.cpp
+// Purpose: .cpp file for Party class
+
 #include"Party.h"
 
 using namespace std;
