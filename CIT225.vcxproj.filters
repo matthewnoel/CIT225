@@ -18,10 +18,10 @@
     <ClCompile Include="TestMovie.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TestParty.cpp">
+    <ClCompile Include="Party.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Party.cpp">
+    <ClCompile Include="Movie.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
