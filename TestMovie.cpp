@@ -18,8 +18,8 @@ int main()
 		cout << "Error with hasPeople 1!\n";
 
         if (m.getPctFull() != 0)
-                cout << "got " << m.getPctFull() << "needed " << "0" << endl;
-		//cout << "Error in getPctFull 1!\n";
+                //cout << "got " << m.getPctFull() << "needed " << "0" << endl;
+		cout << "Error in getPctFull 1!\n";
 
 	if (m.getTitle() != "Rampage")
 		cout << "Error in init!\n";
@@ -35,8 +35,8 @@ int main()
 		cout << "Error with hasPeople 2!\n";
 
 	if (m.getPctFull() != 30)
-                cout << "got " << m.getPctFull() << "needed " << "30" << endl;
-		//cout << "Error in getPctFull 2!\n";
+                //cout << "got " << m.getPctFull() << "needed " << "30" << endl;
+		cout << "Error in getPctFull 2!\n";
 
 
 	p.init("Party 2", 4, "Movie 1", "Movie 2");
@@ -47,8 +47,8 @@ int main()
 	m.addPeople(p);
 
 	if (m.getPctFull() != 70)
-                cout << "got " << m.getPctFull() << "needed " << "70" << endl;
-		//cout << "Error in getPctFull 3!\n";
+                //cout << "got " << m.getPctFull() << "needed " << "70" << endl;
+		cout << "Error in getPctFull 3!\n";
 
 	p.init("Party 3", 4, "Movie 1", "Movie 2");
 
@@ -64,8 +64,8 @@ int main()
 		cout << "Error with hasPeople 3!\n";
 
 	if (m.getPctFull() != 40)
-                cout << "got " << m.getPctFull() << "needed " << "40" << endl;
-		//cout << "Error in getPctFull 4!\n";
+                //cout << "got " << m.getPctFull() << "needed " << "40" << endl;
+		cout << "Error in getPctFull 4!\n";
 
 	p = m.removePeople();
 
@@ -76,8 +76,8 @@ int main()
 		cout << "Error with hasPeople 3!\n";
 
 	if (m.getPctFull() != 0)
-                cout << "got " << m.getPctFull() << "needed " << "0" << endl;
-		//cout << "Error in getPctFull 5!\n";
+                //cout << "got " << m.getPctFull() << "needed " << "0" << endl;
+		cout << "Error in getPctFull 5!\n";
 
 	cout << "Testing Complete!\n";
 	

@@ -21,7 +21,7 @@
   <ItemGroup>
     <ClCompile Include="Movie.cpp" />
     <ClCompile Include="Party.cpp" />
-    <ClCompile Include="TestMovie.cpp" />
+    <ClCompile Include="Program2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Movie.h" />

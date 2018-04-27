@@ -12,7 +12,7 @@ Movie::Movie() {
 void Movie::init(string ti, long cap) {
         title = ti;
         capacity = cap;
-        remaining = capacity;
+        remaining = cap;
 }
 
 bool Movie::canFit(Party people) {
@@ -24,20 +24,20 @@ bool Movie::canFit(Party people) {
 }
 
 long Movie::getPctFull() const {
-        return ((double)(capacity - remaining) / capacity) * 100;
+        return ((double)(capacity - remaining) / (double)capacity) * 100;
 }
 
 void Movie::addPeople(Party people) {
         if (canFit(people)) {
-                parties.push(people);
                 remaining -= people.getSeatsNeeded();
+                parties.push(people);
         }
         return;
 }
 
 Party Movie::removePeople() {
         Party a = parties.pop();
-        remaining -= a.getSeatsNeeded();
+        remaining += a.getSeatsNeeded();
         return a;
 }
 
