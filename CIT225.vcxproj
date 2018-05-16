@@ -19,17 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Movie.cpp" />
-    <ClCompile Include="Party.cpp" />
-    <ClCompile Include="Program2.cpp" />
+    <ClCompile Include="Program3.cpp" />
+    <ClCompile Include="TrackLocation.cpp" />
+    <ClCompile Include="Vehicle.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Movie.h" />
-    <ClInclude Include="Party.h" />
-    <ClInclude Include="Queue.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="movies.txt" />
+    <ClInclude Include="TrackLocation.h" />
+    <ClInclude Include="Vehicle.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
