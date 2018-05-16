@@ -41,21 +41,24 @@ int main() {
 
         // Create vehicles
         const int NUM_CARS = 3;
-        const int NUM_LAPS = 3;
+        const int NUM_LAPS = 2;
         Vehicle cars [NUM_CARS];
         for (int i = 0; i < NUM_CARS; i++) {
-                cars[i].init(loc1, 3, i + 1);
+                cars[i].init(loc1, NUM_LAPS, i + 1);
         }
 
         // Runs race
         bool hasWon = false;
         while (!hasWon) {
-                for (int i = 0; i < NUM_CARS; i++) {
+                for (int i = 0; i < NUM_CARS && !hasWon; i++) {
                         printRace(loc1, cars, NUM_CARS, i);
                         system("PAUSE");
                         cars[i].move(1);
                         if (cars[i].getRemaining() == 0) {
+
                                 hasWon = true;
+                                printRace(loc1, cars, NUM_CARS, i);
+                                cout << "Player " << cars[i].getID() << " won!" << endl;
                         }
                 }
         }
@@ -69,19 +72,27 @@ void printRace(TrackLocation* head, Vehicle vehicles [], long numVehicles, long 
         TrackLocation* temp;
         temp = head;
         do {
-                cout << "|";
                 printLocation(temp, vehicles, numVehicles);
                 temp = temp->getNext();
         } while (temp != head);
         cout << "|" << endl << endl;
 
         // Prints driver rankings
-
+        cout << "   Player  To Go" << endl;
+        for (int i = 0; i < numVehicles; i++) {
+                if (i == moveNext) {
+                        cout << "*";
+                } else {
+                        cout << " ";
+                }
+                cout << "       " << vehicles[i].getID() << "      " << vehicles[i].getRemaining() << endl;
+        }
 
         return;
 }
 
 void printLocation(TrackLocation* loc, Vehicle vehicles[], long numVehicles) {
+        cout << "|";
         for (int i = 0; i < numVehicles; i++) {
                 if (vehicles[i].getLocation() == loc) {
                         cout << vehicles[i].getID();
